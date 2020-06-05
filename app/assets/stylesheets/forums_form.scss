@@ -1,0 +1,56 @@
+@import "./application.scss";
+
+.form_forum_container {
+  background-color: $black-red;
+  background-image: url(asset_path("forums.png"));
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  grid-gap: 0 1rem;
+  grid-template-rows: minmax(0, auto);
+  padding: 4rem;
+  position: relative;
+
+  >h1 {
+    color: #666;
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+
+  >.back_to{
+    position: absolute;
+    left: 4rem;
+    bottom: 2rem;
+    text-decoration: none;
+  }
+}
+
+.form_forum {
+  display: grid;
+  position: relative;
+  max-width: 100% ;
+  background-color: rgba(91, 9, 9, 0.6);
+  padding: 5rem ;
+
+  .btn_done {
+    color: white;
+    width: 130px;
+    height: 50px;
+    background-color: rgba(91, 9, 9, 0.2);
+    outline: none;
+    border: 1px solid;
+    border-color: white;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    position: absolute;
+    right: 4rem;
+    margin-top: 1rem;
+
+    &:hover {
+      background: $black-red;
+      border-color: $black-red;
+    }
+  }
+
+
+}

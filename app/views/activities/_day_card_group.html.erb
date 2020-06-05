@@ -1,0 +1,38 @@
+<div class="day-container">
+  <div class="date">
+    <p class="month"><%= Date::MONTHNAMES[day[1]] %></p>
+    <p class="day"><%= day.last %></p>
+  </div>
+
+  <div class="activities">
+    <% activities.each do |activity| %>
+    <div class="activity" style="background-image: url('<%= url_for(activity.avatar) %>')">
+      <div class="content">
+        <div class="user">
+          <p><%= activity.user.family_name %></p>
+          <%= image_tag "dot.png" %>
+          <span><%= activity.user.rank_name %></span>
+        </div>
+
+        <div class="type">
+          <%= activity.category %>
+        </div>
+
+        <div class="data">
+          <%= link_to activity.title, activity_path(activity) %>
+          
+          <p><%= activity.description %></p>
+        </div>
+
+        <div class="place">
+          <%= image_tag "pin.png" %>
+          
+          <p><%= activity.location %></p>
+
+          <span><%= activity.start_time.strftime("%I:%M %p") %></span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

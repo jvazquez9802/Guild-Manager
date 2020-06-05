@@ -1,0 +1,353 @@
+@import "./application.scss";
+
+.file {
+  > label {
+    cursor: pointer;
+    background-color: rgba(16, 3, 3, 0.8);
+    padding: 1rem 2rem;
+    color: white;
+    border: none;
+    width: 150px;
+    display: inline-block;
+    margin-top: 1rem;
+    text-align: center;
+
+    > input[type="file"] {
+      display: none;
+    }
+
+    > label {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.file.red {
+  > label {
+    background-color: $dark-red;
+  }
+}
+
+.file.margined {
+  margin-bottom: 1rem;
+}
+
+.activities-container {
+  background-color: $black-red;
+  min-height: calc(100vh - 116px - 253px);
+
+  > .header {
+    align-items: center;
+    background-image: url(asset_path("activities_header.png"));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    height: 590px;
+    justify-items: center;
+    text-align: center;
+
+    > div {
+      max-margin: 0 500px;
+
+      > * {
+        margin: 0;
+        padding: 0;
+      }
+
+      > h1 {
+        font-size: 80px;
+        font-weight: bold;
+      }
+
+      > p {
+        font-size: 30px;
+        margin-bottom: 1rem;
+      }
+
+      > a {
+        background-color: rgba(91, 9, 9, 0.5);
+        margin-top: 1rem;
+        padding: 1rem 2rem;
+
+        &:hover {
+          background-color: $dark-red;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  > .activity-group {
+    overflow-x: hidden;
+    > .day-container {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      margin: 2rem 0;
+      max-height: 400px;
+
+      > .date {
+        height: calc(150px - 2rem);
+        text-align: center;
+        font-weight: bold;
+        background-color: $dark-red;
+        padding: 1rem 0;
+
+        > * {
+          margin: 0;
+          padding: 0;
+        }
+
+        > .month {
+          font-size: 20px;
+        }
+
+        > .day {
+          font-size: 60px;
+        }
+      }
+
+      > .activities {
+        display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding: 0;
+
+        > .activity {
+          flex: 1;
+          position: relative;
+          background-color: $black-red;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          height: calc(400px - 4rem);
+          min-width: 570px;
+          color: white;
+          padding: 2rem;
+
+          > .content {
+            position: relative;
+            height: 100%;
+
+            > .user {
+              * {
+                margin: 0;
+                padding: 0;
+              }
+
+              > p {
+                display: inline-block;
+                font-size: 20px;
+                font-weight: bold;
+                text-transform: capitalize;
+              }
+
+              > img {
+                margin: 0 1rem;
+                margin-bottom: 0.5rem;
+              }
+            }
+
+            > .type {
+              position: absolute;
+              background-color: $dark-red;
+              padding: 0.5rem;
+              top: 0;
+              right: 0;
+              text-transform: uppercase;
+              text-align: center;
+              font-weight: bold;
+            }
+
+            > .data {
+              margin-top: 1.5rem;
+
+              > a {
+                font-size: 35px;
+                font-weight: bold;
+              }
+            }
+
+            > .place {
+              position: absolute;
+              bottom: 0;
+              background-color: $dark-red;
+              width: 100%;
+              padding: 0.5rem;
+
+              display: grid;
+              grid-template-columns: 40px 1fr 1fr;
+
+              * {
+                margin: 0;
+                padding: 0;
+              }
+
+              > image {
+                justify-self: center;
+              }
+
+              > p {
+                justify-self: left;
+              }
+
+              > span {
+                justify-self: right;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.activity-container {
+  position: relative;
+  background-color: $dark-red;
+
+  > .image {
+    height: 700px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  > .activity {
+    background-color: $black-red;
+    margin: 0 10%;
+    padding: 4rem;
+    position: relative;
+    top: -100px;
+
+    > .header {
+      text-align: center;
+      margin-bottom: 4rem;
+
+      > * {
+        margin: 0;
+        padding: 0;
+      }
+
+      > h1 {
+        font-size: 60px;
+        font-weight: bold;
+      }
+
+      > p {
+        font-size: 20px;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    > div {
+      > h1 {
+        font-size: 25px;
+        font-weight: bold;
+      }
+    }
+
+    > .trix-content {
+      font-size: 20px;
+    }
+
+    > .bottom {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      height: 50px;
+
+      > * {
+        margin: 0;
+        padding: 0;
+      }
+
+      > h2 {
+        align-self: end;
+        font-size: 20px;
+      }
+
+      > .actions {
+        justify-self: end;
+
+        .participate {
+          &:hover {
+            font-size: 22px;
+          }
+        }
+
+        > p {
+          display: inline-block;
+          margin: 0 1rem;
+        }
+
+        > a {
+          text-decoration: none;
+
+          > img {
+            width: 45px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.activity-form-container {
+  margin: 5% 10%;
+
+  > form {
+    > .activity-form {
+      padding: 4rem;
+      background-color: $dark-red;
+      position: relative;
+
+
+      > .submit {
+        margin-top: 1rem;
+        display: grid;
+        justify-items: right;
+
+        * {
+          &:hover {
+            background-color: $black-red;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    > .actions {
+      margin-top: 3rem;
+      display: grid;
+      justify-items: right;
+
+      > div {
+        * {
+          background-color: $dark-red;
+          padding: 1rem 2rem;
+          color: white;
+          border: none;
+          font-size: 15px;
+          height: 100%;
+          cursor: pointer;
+          text-decoration: none;
+
+          &:hover {
+            filter: saturate(1.5);
+          }
+        }
+
+        input {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+  align-items: center;
+}

@@ -1,0 +1,112 @@
+<div class="disscussion_container">
+     <div class="show_forum">
+          <div class="div_forum_header">
+               <h1 class="h1_title"><%= @forum.title %></h1>
+               <p class="p_date">Discussion started by <%= @forum.user.family_name %> <%= I18n.l(@forum.created_at, format: '%A, %d %B %Y') %> at <%= @forum.created_at.strftime("%H:%M") %> UTC.</p>
+               <div class="div_category">
+                    <p>Category: </p>
+                    <p><%= @forum.category.name %><p>
+               </div>
+               
+          </div>
+          <div class="div_forum_user">
+               <div class="profile_image">
+                    <%= image_tag @forum.user.avatar %>
+               </div>
+               <div class="txt_box">
+                    <p class="p_f_name"><%= @forum.user.family_name %></p>
+                    <p>Comments: <%= @forum.comments.count %></p>
+                    
+                    <% if @forum.solved %>
+                         <p>Status: Close</p>
+                    <% else %>
+                         <p>Status: Open</p>
+                    <% end %>
+               </div>
+               <% if current_user == @forum.user || current_user.rank == "guild_master" %>
+                    <% if @forum.solved %>
+                         <%= link_to "Open", forum_path(@forum, change: true), method: :put, class: "btn_status" %>
+                    <% else %>
+                         <%= link_to "Close", forum_path(@forum, change: true), method: :put, class: "btn_status" %>
+                    <% end %>
+               <% end %>
+               
+               
+          </div>
+          <div class="div_forum_content">
+               <div class="div_forum_reason">
+                    <p><%= @forum.reason %></p>
+                    <% if @forum.user == current_user %>
+                         <%= link_to forum_path(@forum), method: :delete, data: { confirm: 'Delete Discussion?' } do %>
+                              <img src="../../assets/eraser.png">
+                         <%end%>
+                         <%= link_to edit_forum_path(@forum) do %>
+                              <img src="../../assets/feather.png">
+                         <%end%>
+                    <%end%>
+               </div>
+               <div class="content"> 
+                    <%= @forum.content %>
+                    <p>Last update: <%= I18n.l(@forum.updated_at, format: '%A, %d %B %Y') %> - <%= @forum.updated_at.strftime("%H:%M") %> UTC.</p>     
+               </div>
+               
+          </div>
+     </div>
+     <% if @forum.solved %>
+     <% else %>
+          <div class="new_comment">
+               <%= image_tag current_user.avatar %>
+               <%= form_with(model: Comment.new , local: true) do |f| %>
+                    <%= f.text_area :content, class: "textarea_write_comment", placeholder: "Write your reply" %>
+                    <%= f.hidden_field :forum_id, value: @forum.id %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= f.submit "Post comment", class: "btn_write_comment" %>
+               <% end %>
+          </div>
+     <% end %>
+      <% if @forum.comments.count > 0 %>
+          <div class="show_comments">
+               <p>Comments</p>
+               <% @forum.comments.each do |c| %>
+                    <div class="comment_card">
+                         <div class="div_user_comment_info">
+                              <%= image_tag c.user.avatar %>
+                              <div class="comment_info">
+                                   <p class="p_comment_user_name"><%= c.user.family_name %></p>
+                                   <p class="p_comment_likes">Likes: <%= c.likes.count %></p>
+                                   <p class="p_comment_dislikes">Dislikes: <%= c.dislikes.count %> </p>
+                              </div>
+                         </div>
+                         
+                         <div class="comment_content">
+                              <div><%= c.content %></div>
+                              <p class="comment_footer"><%= c.user.family_name %>, <%= I18n.l(c.created_at, format: '%A, %d %B %Y') %> at <%= c.created_at.strftime("%H:%M") %> UTC.</p>
+                              
+
+
+
+
+                              <% if c != nil && %>
+                                   <%= link_to comment_path(c, like: true), method: :put, class: "img_like" do %>
+                                        <%= image_tag "like.png"%>
+                                   <% end %>
+
+                                   <%= link_to comment_path(c, dislike: true), method: :put, class: "img_dislike" do %>
+                                        <%= image_tag "dislike.png"%>
+                                   <% end %>
+                              <% end %>
+
+                              <% if c.user == current_user %>
+                                <%= link_to comment_path(c), method: :delete, class: "img_delete", data: { confirm: 'Delete Comment?' } do %>
+                                  <%= image_tag "eraser.png" %>
+                                <%end%>
+                                <%= link_to edit_comment_path(c), class: "img_feather" do %>
+                                  <%= image_tag "feather.png" %>
+                                <%end%>
+                              <%end%>
+                         </div>
+                    </div>
+                  <% end %>
+          </div>
+        <% end %>
+</div>

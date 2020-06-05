@@ -1,0 +1,58 @@
+<div class="activity-container">
+    <div class="image" style="background-image: url(<%= url_for (@activity.avatar || '')%>);"></div>
+
+    <div class="activity">
+        <div class="header">
+            <h1><%= @activity.title %></h1>
+            <p><%= @activity.start_time.strftime("%B %e, %Y") %></p>
+            <p><%= @activity.start_time.strftime("%I:%M %p") %></p>
+        </div>
+        <%= @activity.content %>
+        <hr class="uk-divider-icon">
+        <% if @activity.user == current_user %>
+            <div>
+                <h1>Participants (<%= @activity.participants.count %>)</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Family name</th>
+                            <th>Rank</th>
+                            <th>GS</th>
+                            <th>Discord</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% User.where(id: @activity.participants).each do |user| %>
+                            <tr>
+                                <td><%= user.family_name %></td>
+                                <td><%= user.rank %></td>
+                                <td><%= user.gear_score %></td>
+                                <td><%= user.discord_tag %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+
+        <div class="bottom">
+            <h2>Channel: <%= @activity.channel %></h2>
+            <h2>Place: <%= @activity.location %></h2>
+
+            <div class="actions">
+                <% if @activity.user == current_user %>
+                    <%= link_to activity_path(@activity), method: :delete, data: {confirm: "Are you sure you want to delete this activity?"} do %>
+                        <%= image_tag "eraser.png" %>
+                    <% end %>
+
+                    <%= link_to edit_activity_path(@activity) do %>
+                        <%= image_tag "feather.png" %>
+                    <% end %>
+                <% elsif !@activity.participants.include?(current_user.id) %>
+                    <p>Participants <%= @activity.participants.count %></p>
+                    <%= link_to "✋", activity_path(@activity, participate: true), method: :put, class: "participate" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

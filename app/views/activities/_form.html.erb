@@ -1,0 +1,48 @@
+<%= form_with(model: @activity, local: true, ) do |f| %>
+  <div class="activity-form">
+    <div class="two-column">
+      <div class="field">
+        <%= render "components/input", f: f, key: :title, model: @activity %>
+      </div>
+      <div class="field">
+        <%= render "components/input", f: f, key: :location, model: @activity %>
+      </div>
+    </div>
+    <div class="two-column">
+      <div class="field">
+        <%= f.label :start_time %>
+        <%= f.datetime_field :start_time %>
+      </div>
+      <div class="field">
+        <%= render "components/input", f: f, key: :channel, model: @activity %>
+      </div>
+    </div>
+    <div class="two-column">
+      <div class="field">
+        <%= render "components/select", f: f, key: :category, options: options_for_select(Activity.categories.to_a.map { |key, value| [key, key] }), model: @activity %>
+      </div>
+      <div class="field">
+        <%= render "components/text", f: f, key: :description, model: @activity %> 
+      </div>
+    </div>
+    
+    <%= f.label :details %>
+    <%= f.rich_text_area :content %>
+    
+    <div class="file">
+      <label>
+        <%= f.file_field :avatar %>
+        Select image
+      </label>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div>
+      <%= link_to 'Cancel', back_path %>
+
+      <%= f.submit %>
+    </div>
+  </div>
+
+<% end %>

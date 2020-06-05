@@ -1,0 +1,15 @@
+<div class="form_forum">
+  <%= form_with(model: @guide, local: true) do |f| %>
+
+    <%= render "components/input", f: f, key: :title, model: @guide %>
+    <%= render "components/input", f: f, key: :description, model: @guide %>
+    <%= render "components/select", f: f, key: :category_id, options: options_for_select(Category.pluck(:name, :id)), model: @guide %>
+
+    <%= f.label :content %>
+    <%= f.rich_text_area :content%>
+
+    <%= f.submit class: "btn_done" %>
+  <% end %>
+</div>
+
+

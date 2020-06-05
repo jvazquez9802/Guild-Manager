@@ -1,0 +1,40 @@
+<div class="forums-container">
+  <div class="forum-info">
+      <button><a><%= link_to 'Write Guide', new_guide_path%></a></button>
+      <div class="search-container">
+        <%= form_with url: guides_path, method: :get, local: true do |f| %>
+          <%= f.text_field :q, placeholder: "Search Guide", type: "search" %>
+          <%= f.submit "Search", class: "icon-button" %>
+        <% end %>
+      </div>
+      <%= form_with url: guides_path, method: :get, local: true do |f| %>
+        <%= f.select :category, options_for_select(Category.pluck(:name, :id), params[:category]), {prompt: "Category"}, onchange: "this.form.submit();" %>
+      <% end %>
+  </div>
+  <div class="forum-card-container">
+    <% if @guides.count.zero? %>
+      <div class="empty">
+        <img src="../../assets/empty_icon.png">
+      </div>
+    <% end %>
+    <% @guides.each do |guide| %>
+      <div  class="card">
+        <div class="div-img">
+          <%= image_tag "forum_logo.png" %>
+        </div>
+        <%= link_to guide.title, guide_path(guide), class: "p-title"%>
+        <p class="p-date"> <%= I18n.l(guide.created_at, format: '%d %B, %Y') %></p>
+        <div class="div-category">
+          <p class="p-category"><%= guide.category.name %></p>
+        </div>
+        <p class="p-description"><%= guide.description %></p>
+        <p class="p-user"><%= guide.user.family_name %></p>
+        <div class="div-comment">
+          <div>
+              <p><%= guide.comments.count %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

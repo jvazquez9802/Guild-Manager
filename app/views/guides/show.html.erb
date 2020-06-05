@@ -1,0 +1,90 @@
+<div class="disscussion_container">
+     <div class="show_forum">
+          <div class="div_forum_header">
+               <h1 class="h1_title"><%= @guide.title %></h1>
+               <p class="p_date">Guide posted by <%= @guide.user.family_name %> <%= I18n.l(@guide.created_at, format: '%A, %d %B %Y') %> at <%= @guide.created_at.strftime("%H:%M") %> UTC.</p>
+               <div class="div_category">
+                    <p>Category: </p>
+                    <p><%= @guide.category.name %><p>
+               </div>
+               
+          </div>
+          <div class="div_forum_user">
+               <div class="profile_image">
+                    <%= image_tag @guide.user.avatar %>
+               </div>
+               <div class="txt_box">
+                    <p class="p_f_name"><%= @guide.user.family_name %></p>
+                    <p>Comments: <%= @guide.comments.count %></p>
+               </div>
+               <button class="btn_status">Close</button>
+               
+          </div>
+          <div class="div_forum_content">
+               <div class="div_forum_reason">
+                    <p><%= @guide.description %></p>
+                    <% if @guide.user == current_user %>
+                         <%= link_to forum_path(@guide), method: :delete, data: { confirm: 'Delete Guide?' } do %>
+                              <img src="../../assets/eraser.png">
+                         <%end%>
+                         <%= link_to edit_guide_path(@guide) do %>
+                              <img src="../../assets/feather.png">
+                         <%end%>
+                    <%end%>
+               </div>
+               <div class="content"> 
+                    <%= @guide.content %>
+                    <p>Last update: <%= I18n.l(@guide.updated_at, format: '%A, %d %B %Y') %> - <%= @guide.updated_at.strftime("%H:%M") %> UTC.</p>     
+               </div>
+               
+          </div>
+     </div>
+     <div class="new_comment">
+          <%= image_tag current_user.avatar %>
+          <%= form_with(model: Comment.new , local: true) do |f| %>
+               <%= f.text_area :content, class: "textarea_write_comment", placeholder: "Write your reply" %>
+               <%= f.hidden_field :guide_id, value: @guide.id %>
+               <%= f.hidden_field :user_id, value: current_user.id %>
+               <%= f.submit "Post comment", class: "btn_write_comment" %>
+          <% end %>
+     </div>
+      <% if @guide.comments.count > 0 %>
+          <div class="show_comments">
+               <p>Comments </p>
+               <% @guide.comments.each do |c| %>
+                    <div class="comment_card">
+                         <div class="div_user_comment_info">
+                              <%= image_tag c.user.avatar %>
+                              <div class="comment_info">
+                                   <p class="p_comment_user_name"><%= c.user.family_name %></p>
+                                   <p class="p_comment_likes">Likes: <%= c.likes.count %></p>
+                                   <p class="p_comment_dislikes">Dislikes: <%= c.dislikes.count %> </p>
+                              </div>
+                         </div>
+                         
+                         <div class="comment_content">
+                              <div><%= c.content %></div>
+                              <p class="comment_footer"><%= c.user.family_name %>, <%= I18n.l(c.created_at, format: '%A, %d %B %Y') %> at <%= c.created_at.strftime("%H:%M") %> UTC.</p>
+                               <% if c != nil && %>
+                                   <%= link_to comment_path(c, like: true), method: :put, class: "img_like" do %>
+                                        <%= image_tag "like.png"%>
+                                   <% end %>
+
+                                   <%= link_to comment_path(c, dislike: true), method: :put, class: "img_dislike" do %>
+                                        <%= image_tag "dislike.png"%>
+                                   <% end %>
+                              <% end %>
+                              <% if c.user == current_user %>
+                                <%= link_to comment_path(c), method: :delete, class: "img_delete", data: { confirm: 'Delete Comment?' } do %>
+                                  <%= image_tag "eraser.png" %>
+                                <%end%>
+                                <%= link_to edit_comment_path(c), class: "img_feather" do %>
+                                  <%= image_tag "feather.png" %>
+                                <%end%>
+                              <%end%>
+                         </div>
+                    </div>
+               <% end %>
+          </div>
+     <% end %>
+</div>

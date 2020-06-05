@@ -1,0 +1,33 @@
+<div class="sign-in-container">
+  <div class="right">
+    <h1>Welcome</h1>
+    <h4>Register for AGR here</h4>
+
+    <p class="desc">By registering, you will become part of our community, where you can participate in our activities,
+      guides and forums while having a profile where you can share your character and progress.</p>
+
+    <%= link_to "Register here", sign_up_path %>
+  </div>
+
+  <div class="left">
+    <%= form_with model: @user, url: sessions_path, local: true, method: :post do |f| %>
+      <legend class="uk-legend uk-align-center">Or login to your account</legend>
+
+      <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+          <span class="uk-form-icon" uk-icon="icon: user"></span>
+          <%= f.text_field :family_name, class: "uk-input", placeholder: "Family Name" %>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <div class="uk-inline uk-width-1-1">
+          <span class="uk-form-icon uk-form-icon" uk-icon="icon: lock"></span>
+          <%= f.password_field :password, class: "uk-input", placeholder: "Password" %>
+        </div>
+      </div>
+      <%= f.submit "Login", class: "uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" %>
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,114 @@
+@import "./application.scss";
+
+.outlined-font {
+  color: rgba(255, 255, 255, 0.6);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+}
+
+.about-page {
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  background-color: $dark-red;
+  padding: 2rem;
+
+  > .container {
+    max-width: 1370px;
+    margin: auto;
+    background-color: $black-red;
+
+    > .title {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      justify-items: center;
+      background-image: url(asset_path("our_guild_header_bg.png"));
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 630px;
+
+      > h1 {
+        align-self: center;
+        font-size: 60px;
+      }
+
+      > p {
+        padding: 0 100px;
+        text-align: center;
+        font-size: 40px;
+      }
+    }
+
+    > .offer {
+      text-align: center;
+      padding: 2rem 0;
+
+      > .title {
+        font-size: 30px;
+      }
+
+      > .desc {
+        font-size: 20px;
+      }
+    }
+
+    .card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 844px;
+
+      > .content {
+        padding: 4rem;
+
+        > .header {
+          text-align: center;
+          font-size: 40px;
+          height: 65px;
+        }
+
+        > .list {
+          padding: 27% 0;
+          background-color: $black-red;
+          justify-content: center;
+
+          > div {
+            margin: 2rem;
+            display: grid;
+            grid-template-columns: 23% 1fr;
+            column-gap: 2rem;
+
+            > img {
+              justify-self: end;
+            }
+
+            p {
+              justify-self: start;
+              font-size: 35px;
+            }
+          }
+        }
+      }
+    }
+
+    .card-1 {
+      background-image: url(asset_path("our_guild_1.png"));
+    }
+
+    .card-2 {
+      background-image: url(asset_path("our_guild_2.png"));
+    }
+
+    .card-3 {
+      background-image: url(asset_path("our_guild_3.png"));
+    }
+
+    .card-4 {
+      background-image: url(asset_path("our_guild_4.png"));
+    }
+
+    .card-5 {
+      background-image: url(asset_path("our_guild_5.png"));
+    }
+  }
+}

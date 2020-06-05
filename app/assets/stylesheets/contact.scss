@@ -1,0 +1,86 @@
+@import "./application.scss";
+
+.contact-container {
+  min-height: calc(100vh - 116px - 253px);
+  max-height: 1220px;
+  background-image: url(asset_path("contact.png"));
+  background-color: rgba(91, 9, 9, 0.5);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 4rem;
+
+  > h1 {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  > .contacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    text-align: center;
+
+    > .card {
+      > h4 {
+        font-size: 40px;
+        margin: 0;
+      }
+
+      > p {
+        font-size: 25px;
+      }
+    }
+
+    > .middle {
+      margin-top: 2rem;
+    }
+  }
+
+  > h2 {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  > .contact {
+    background-color: $black-red;
+    border-radius: 112px;
+
+    display: grid;
+    grid-template-columns: 25% 75%;
+    column-gap: 3rem;
+    padding: 60px;
+
+    > .profile {
+      justify-self: center;
+      text-align: center;
+      > img {
+        height: 200px !important;
+      }
+
+      > p {
+        font-size: 40px;
+        text-align: center;
+      }
+    }
+
+    > .status {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      > .stat {
+        text-align: center;
+        h4 {
+          font-weight: bold;
+          font-size: 45px;
+          color: #ffffff;
+          opacity: 0.6;
+        }
+
+        p {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+ediv class="user_edit">
+  <h1><%= current_user.family_name %></h1>
+
+  <%= render 'form' %>
+
+  <%= link_to 'Back', user_path(current_user) %>
+</div>

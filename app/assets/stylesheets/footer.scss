@@ -1,0 +1,45 @@
+@import "./application.scss";
+
+.footer {
+  min-height: 20vh;
+  max-height: 20vh;
+  display: grid;
+  background-color: $black-red;
+  grid-template-columns: 25% 1fr;
+  align-items: center;
+  padding: 1rem;
+
+  > .media {
+    justify-self: center;
+    > div {
+      background-color: $dark-red;
+      border-radius: 72px;
+      padding: 10px;
+
+      > a {
+        text-decoration: none;
+        > img {
+          height: 10vh;
+        }
+      }
+      > .middle {
+        margin: 0 15px;
+      }
+    }
+  }
+
+  > .links {
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+
+    > a {
+      font-size: 25px;
+    }
+    > p {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+  }
+}

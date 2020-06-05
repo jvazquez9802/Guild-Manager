@@ -1,0 +1,44 @@
+<div class="user_container">
+    <div class="div_user_header">
+        <div class="div_cover_photo">
+            <% if @user.cover.attached? %>
+                <%= image_tag url_for(@user.cover || "") ||"profile_cover.png" %>
+            <% end %>
+        </div>
+         <div class="div_header_items">
+            <a class="a_img_profile">
+                <%= image_tag @user.avatar, class: "img_profile" %>
+            </a>
+            <div class="div_user_info_container">
+                <h1 class="h1_user_name"><%= @user.family_name %></h1>
+                <ul class="ul_user_info">
+                    <li class="li_user_info"><%= @user.discord_tag %></li>
+                    <li class="li_user_info"><%= @user.rank.capitalize %></li>
+                    <li class="li_user_info">
+                        Gear Sore
+                        <ul class="ul_droped">
+                            <li>AP: <%= @user.atack %></li>
+                            <li>AAP: <%= @user.atack_awake %></li>
+                            <li>PD: <%= @user.denfense %></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <% if current_user == @user%>
+                <%= link_to "Edit profile", edit_user_path(@user), class: "btn_edit" %>
+            <% end %>
+        </div>            
+    </div>
+    <div class="div_user_content">
+        <div class="about_me_content">
+            <h2 class="h_about_me">About me</h2>
+            <p class="p_about_me"> <%= @user.description.capitalize %></p>
+            <%= link_to "My character", @user.build_url, class: "btn_character", target: :_blank %>
+        </div>
+        
+    </div>
+    <aside class="aside_info">
+    
+    </aside>
+</div>
+

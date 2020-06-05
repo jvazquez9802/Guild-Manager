@@ -1,0 +1,53 @@
+<div class="signup-container">
+    <%= image_tag "registration_logo" %>
+    <h1>Alliance Gremory</h1>
+
+    <legend class="uk-legend uk-align-center">Sign up</legend>
+    <%= form_with model: @user, local: true, class: "is-dark uk-container uk-container-large", html: {style: "width: 500px"}  do |f| %>
+
+    <%= render "components/input", f: f, key: :family_name, model: @user %>
+    <%= render "components/password", f: f, key: :password, model: @user, model: @user %>
+    <%= render "components/input", f: f, key: :discord_tag, model: @user %>
+    <%= render "components/text", f: f, key: :description, model: @user %>
+    <div class="status">
+        <%= render "components/number_input", f: f, key: :atack, model: @user %>
+        <%= render "components/number_input", f: f, key: :atack_awake, model: @user %>
+        <%= render "components/number_input", f: f, key: :denfense, model: @user%>
+    </div>
+    <%= render "components/select", f: f, key: :branch, options: options_for_select([["Awakening", :awakening],["Succession", :succession]]), model: @user %>
+    <%= render "components/select", f: f, key: :avatar, options: options_for_select(
+      [
+        ["Archer", "avatar_archer_chibi.jpg"],
+        ["Berserker", "avatar_berserker_chibi.jpg"],
+        ["Dark Knight", "avatar_darknight_chibi.jpg"],
+        ["Guardian", "avatar_guardian_chibi.jpg"],
+        ["Kunoichi", "avatar_kunoichi_chibi.jpg"],
+        ["Lahn", "avatar_lahn_chibi.jpg"],
+        ["Maehwa", "avatar_maehwa_chibi.jpg"],
+        ["Musa", "avatar_musa_chibi.jpg"],
+        ["Mystic", "avatar_mystic_chibi.jpg"],
+        ["Ninja", "avatar_ninja_chibi.jpg"],
+        ["Ranger", "avatar_ranger_chibi.jpg"],
+        ["Shai", "avatar_shai_chibi.jpg"],
+        ["Sorceress", "avatar_sorceress_chibi.jpg"],
+        ["Striker", "avatar_striker_chibi.jpg"],
+        ["Tamer", "avatar_tamer_chibi.jpg"],
+        ["Valkyrie", "avatar_valkyrie_chibi.jpg"],
+        ["Warrior", "avatar_warrior_chibi.jpg"],
+        ["Witch", "avatar_witch_chibi.jpg"],
+        ["Wizard", "avatar_wizard_chibi.jpg"]
+      ]
+      
+      ), model: @user %>
+
+    <div class="file" style="margin-bottom: 1rem;">
+      <label>
+        <%= f.file_field :cover %>
+        Select cover
+      </label>
+    </div>
+
+    <%= f.submit "Done", class: "uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" %>
+    <%= link_to "Login", new_session_path, class: "uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" %>
+    <% end %>
+</div>

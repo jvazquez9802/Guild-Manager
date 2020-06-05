@@ -1,0 +1,8 @@
+<div>
+  <% flash.each do |name, msg| %>
+    <div class="uk-dark uk-alert-<%= name %>" uk-alert>
+      <a class="uk-alert-close" uk-close style="color: black"></a>
+      <p><%= msg %></p>
+    </div>
+  <% end %>
+</div>

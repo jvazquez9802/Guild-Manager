@@ -1,0 +1,11 @@
+<div>
+  <%= f.label key, class: "uk-form-label" %>
+  <div class="uk-form-controls">
+    <%= f.number_field key, class: "uk-input #{model.errors[key] && "uk-form-danger"}" %>
+    <% if model.errors[key] %>
+      <% model.errors[key].each do |err| %>
+        <span class="uk-label uk-label-danger"><%= err %></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

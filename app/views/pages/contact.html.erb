@@ -1,0 +1,57 @@
+<div class="contact-container">
+  <h1>GET IN TOUCH</h1>
+
+  <div class="contacts">
+    <div class="card">
+      <%= link_to "https://discord.gg/GXTJjY5", target: :_blank do %>
+          <%= image_tag "discord2.png" %>
+      <% end %>
+      <h4>Discord</h4>
+      <p>You can access our discord through the following route</p>
+    </div>
+
+    <div class="card middle">
+      <%= link_to "https://www.blackdesertonline.com/download", class: "middle", target: :_blank do %>
+        <%= image_tag "dice2.png" %>
+      <% end %>
+      <h4>In Game</h4>
+      <p>You will find us on the Mediah 2 channel</p>
+    </div>
+
+    <div class="card">
+      <%= link_to "https://www.facebook.com/Alliance-Gremory-Guild-112508870411824/", target: :_blank do %>
+        <%= image_tag "facebook2.png" %>
+      <% end %>
+      <h4>Facebook</h4>
+      <p>Follow us on our official facebook page</p>
+    </div>
+  </div>
+
+  <h2>Contact information</h2>
+
+  <div class="contact">
+    <div class="profile">
+      <%= image_tag "contact_image.png" %>
+      <p>Guild Master</p>
+    </div>
+
+    <div class="status">
+      <div class="stat">
+        <h4>Family name</h4>
+        <p>Unevenly</p>
+      </div>
+      <div class="stat">
+        <h4>Character</h4>
+        <p>Keioos</p>
+      </div>
+      <div class="stat">
+        <h4>Discord</h4>
+        <p><%= User.find_by(family_name: "Unevenly").discord_tag %></p>
+      </div>
+      <div class="stat">
+        <h4>AP/AAP/DP</h4>
+        <p><%= User.find_by(family_name: "Unevenly").atack %>/<%= User.find_by(family_name: "Unevenly").atack_awake %>/<%= User.find_by(family_name: "Unevenly").denfense %></p>
+      </div>
+    </div>
+  </div>
+</div>

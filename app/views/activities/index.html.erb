@@ -1,0 +1,18 @@
+<div class="activities-container">
+  <div class="header">
+    <div>
+      <h1>Activities</h1>
+      <p>Don’t miss the activities that will be announced each week!</p>
+
+      <% if current_user.is_admin? %>
+        <%= link_to 'NEW', new_activity_path %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="activity-group">
+    <% @activity_groups.each do |day, activities| %>
+      <%= render "day_card_group.html", day: day, activities: activities %>
+    <% end %>
+  </div>
+</div>

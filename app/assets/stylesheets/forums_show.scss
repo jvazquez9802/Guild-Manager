@@ -1,0 +1,328 @@
+@import "./application.scss";
+
+.btn_status {
+    color: white;
+    width: 130px;
+    height: 40px;
+    background-color: $dark-red;
+    justify-self: center;
+    text-align: center;
+    padding-top: 0.8rem;
+    outline: none;
+    border: 2px solid;
+    border-color: rgba(91, 9, 9, 0.8);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    position: absolute;
+    top: 27rem;
+    
+
+    &:hover {
+        background: rgba(91, 9, 9, 0.2);
+        color: $dark-red !important;
+        font-weight: bolder;
+        text-decoration: none;
+    }
+}
+
+.disscussion_container {
+    min-height: calc(100vh - 116px - 253px);
+    background-image: url(asset_path("forums.png"));
+    background-color: $black-red;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 4rem;
+    display: grid;
+    grid-template:
+        "forumInfo"
+        "writeComment"
+        "viewComment";
+    grid-template-rows: minmax(0, auto);
+    grid-gap: 0 1rem;
+    > .show_forum {
+        display: grid;
+        grid-area: forumInfo;
+        position: relative;
+        grid-template-columns: 1.5fr 4fr 1fr;
+        grid-template-rows: minmax(0, auto);
+
+        > .div_forum_header {
+            display: grid;
+            position: relative;
+            grid-column: 1/4;
+            grid-row: 1/2;
+            margin: 0 0 2rem 0;
+            > .p_title {
+                color: white;
+                font-weight: bold;
+                font-size: 2rem;
+                margin: 0;
+            }
+            > .p_date {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+            > .div_category {
+                margin: 0;
+                font-size: 0.9rem;
+                > p {
+                    display: inline;
+                }
+            }
+        }
+        > .div_forum_user {
+            display: grid;
+            position: relative;
+            grid-column: 1/2;
+            grid-row: 2/3;
+            background-color: $black-red;
+            margin-right: 0.1rem;
+            grid-template-rows: minmax(0, auto);
+            min-height: 82vh;
+
+            > .profile_image {
+                padding: 1rem;
+                top: 1rem;
+                justify-self: center;
+                position: absolute;
+                > img {
+                    width: 230px;
+                    height: 230px;
+                    border-radius: 160px;
+                    border: 10px solid $dark-red;
+                }
+            }
+            > .txt_box {
+                background-color: $dark-red;
+                justify-self: center;
+                margin: 1rem;
+                padding: 1rem;
+                text-align: center;
+                position: absolute;
+                min-width: 30vh;
+                top: 17rem;
+                > .p_f_name {
+                    font-weight: bold;
+                    font-size: 2rem;
+                    margin: 0;
+                }
+                > p {
+                    margin: 0;
+                }
+            }
+        }
+        > .div_forum_content {
+            grid-column: 2/4;
+            grid-row: 2/3;
+            background-color: $black-red;
+            padding: 3rem 3rem 0rem 3rem;
+            font-size: 1.1rem;
+            text-align: justify;
+
+            > .div_forum_reason {
+                display: grid;
+                grid-template-columns: 10fr 1fr 1fr;
+                grid-auto-rows: 1fr;
+                margin-bottom: 2rem;
+                column-gap: 2rem;
+
+                > p {
+                    font-weight: bold;
+                    ;
+                }
+                > a {
+                    > img {
+                        justify-self: left;
+                        height: 30px;
+                        width: 30px;
+                    }
+                }
+            }
+            >.content{
+                >p{
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    > .new_comment {
+        display: grid;
+        grid-area: writeComment;
+        grid-template-columns: 1fr 4fr;
+        grid-template-rows: minmax(0, auto);
+        position: relative;
+
+        background-color: $black-red;
+        margin-top: 1rem;
+        min-height: 46vh;
+
+        > img {
+            grid-column: 1/2;
+            top: 1rem;
+            justify-self: center;
+            align-self: center;
+            width: 200px;
+            height: 200px;
+            border-radius: 130px;
+            border: 10px solid rgba(91, 9, 9, 0.5);
+        }
+        .textarea_write_comment {
+            position: absolute;
+            right: 3rem;
+            grid-column: 2/3;
+            width: 131vh;
+            height: 65%;
+            margin: 1.5rem 0rem 3rem 4rem;
+            padding: 1rem;
+            box-sizing: border-box;
+            border: 2px solid rgba(91, 9, 9, 0.8);
+            border-radius: 4px;
+            background-color: rgba(91, 9, 9, 0.2);
+            resize: none;
+            color: #666;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .btn_write_comment {
+            color: white;
+            width: 15%;
+            height: 17%;
+            background-color: rgba(91, 9, 9, 0.2);
+            outline: none;
+            border: 2px solid;
+            border-color: rgba(91, 9, 9, 0.8);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            position: absolute;
+            right: 3rem;
+            bottom: 1rem;
+
+            &:hover {
+                background: $dark-red;
+            }
+        }
+    }
+
+    > .show_comments {
+        display: grid;
+        grid-area: viewComment;
+        grid-template-rows: minmax(0, auto);
+
+        margin-top: 1rem;
+        min-height: 78vh;
+        max-height: 94vh;
+        overflow-y: scroll;
+
+        >p{
+            font-size: 1.5rem;
+            font-weight: bolder;
+        }
+
+        > .comment_card {
+            display: grid;
+            grid-template-columns: 1.3fr 4fr;
+            position: relative;
+            margin: 1rem;
+            min-height: 50vh;
+
+            > .div_user_comment_info {
+                display: grid;
+                position: relative;
+                margin-right: 0.3rem;
+                min-height: 65vh;
+                max-height: 65vh;
+                background-color: $black-red;
+                > img {
+                    align-self: center;
+                    justify-self: center;
+                    position: absolute;
+                    top: 1rem;
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 130px;
+                    border: 10px solid rgba(91, 9, 9, 0.5);;
+                }
+                > .comment_info {
+                    background-color: rgba(91, 9, 9, 0.5);
+                    justify-self: center;
+                    position: absolute;
+                    top: 13rem;
+                    margin: 1rem;
+                    padding: 1rem;
+                    min-width: 30vh;
+                    min-height:18vh;
+                    max-height: 18vh;
+                    > p {
+                        margin: 0;
+                    }
+                    > .p_comment_user_name {
+                        font-size: 1.5rem;
+                        text-align: center;
+                    }
+                    > .p_comment_likes {
+                        color: #06623B;
+                        font-weight: bold;
+                    }
+                    > .p_comment_dislikes {
+                        color: #BB3B0E;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            > .comment_content {
+                display: grid;
+                position: relative;
+                grid-template-rows: minmax(0, auto);
+                grid-column: 2/4;
+                grid-row: 1/2;
+                text-align: justify;
+                padding: 2rem 2rem 3rem 2rem;
+                background-color: $black-red;
+
+                >.comment_footer{
+                    position: absolute;
+                    bottom: 0.2rem;
+                    justify-self: center;
+                    font-size: 0.8rem;
+                }
+
+                >.img_like{
+                    position: absolute;
+                    right: 6rem;
+                }
+                >.img_dislike{
+                    position: absolute;
+                    right: 2rem;
+                }
+                > a {
+                    position: absolute;
+                    bottom: 1rem;
+                    img{
+                        width: 30px;
+                        height: 30px;
+                        >.img_like{
+                            position: absolute;
+                            right: 6rem;
+                        }
+                        >.img_dislike{
+                            position: absolute;
+                            right: 10rem;
+                        }
+                    }right: 2rem;
+
+                }
+
+                > .img_delete {
+                    right: 10rem;
+                }
+
+                > .img_feather {
+                    right: 14rem;
+                }
+            }
+        }
+    }
+}

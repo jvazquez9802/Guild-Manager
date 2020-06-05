@@ -1,0 +1,52 @@
+<div class="users_index">
+    <h1>Members</h1>
+
+    <table>
+      <thead>
+        <tr>
+            <th>Family</th>
+            <th>Rank</th>
+            <th>GS</th>
+            <th>Discord</th>
+            <th>Show</th>
+            <% if current_user.rank == "guild_master" %>
+              <th>Edit</th>
+              <th>Block</th>
+            <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+              <td><%= user.family_name %></td>
+              <td><%= user.rank %></td>
+              <td><%= user.gear_score %></td>
+              <td><%= user.discord_tag %></td>
+              <td>
+                <%= link_to user_path(user) do %>
+                  <%= image_tag "eye.png" %>
+                <% end %>
+              </td>
+              <% if current_user.rank == "guild_master" %>
+                <td>
+                    <%= link_to edit_user_path(user) do %>
+                      <%= image_tag "feather.png" %>
+                    <% end %>
+                </td>
+                <td>
+                  <% if user.blocked? %>
+                    <%= link_to user_path(user, unblock: true), method: :put, data: {confirm: "Are you sure you want to unblock " + user.family_name + "?"} do %>
+                      UNBLOCK
+                    <% end %>
+                  <% else %>
+                    <%= link_to user_path(user), method: :delete, data: {confirm: "Are you sure you want to block " + user.family_name + "?"} do %>
+                      <%= image_tag "block.png" %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>

@@ -1,0 +1,11 @@
+<div class="uk-margin">
+  <%= f.label key, class: "uk-form-label" %>
+  <div class="uk-form-controls">
+    <%= f.select key, options, {}, class: "uk-select" %>
+    <% if model.errors[key] %>
+      <% model.errors[key].each do |err| %>
+        <span class="uk-label uk-label-danger"><%= err %></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

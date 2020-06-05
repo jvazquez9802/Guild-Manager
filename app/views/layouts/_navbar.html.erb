@@ -1,0 +1,53 @@
+<nav class="uk-navbar-container uk-navbar-transparent uk-background-secondary uk-padding-small" uk-navbar>
+  <div class="uk-navbar-left">
+
+    <ul class="uk-navbar-nav">
+      <li class="uk-active uk-text-bold">
+        <%= link_to root_path, class: "uk-logo uk-text-large", style: "font-size: 20px" do %>
+          <%= image_tag "header_logo.png", class: "uk-logo" %>
+           Alliance Gremory
+        <% end%>
+      </li>
+
+      <% if current_user %>
+        <li>
+          <%= link_to "Activities", activities_path %>
+        </li>
+        <li>
+          <%= link_to "Forums", forums_path %>
+        </li>
+        <li>
+          <%= link_to "Guides", guides_path %>
+        </li>
+        <% if current_user&.is_admin? %>
+          <li>
+            <%= link_to "Members", users_path %>
+          </li>
+        <% end %>
+      <% end %>
+
+    </ul>
+  </div>
+
+  <div class="uk-navbar-right">
+
+    <ul class="uk-navbar-nav">
+
+      <% if current_user %>
+        <li class="uk-active uk-text-bold">
+          <%= link_to current_user.family_name, user_path(current_user) %>
+        </li>
+        <li>
+          <%= link_to "Log out", session_path(current_user.id), method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Log in", new_session_path %>
+        </li>
+        <li>
+          <%= link_to "Sign up", sign_up_path %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

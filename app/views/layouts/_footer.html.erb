@@ -1,0 +1,23 @@
+<div class="footer">
+  <div class="media">
+    <div>
+      <%= link_to "https://discord.gg/GXTJjY5", target: :_blank do %>
+        <%= image_tag "discord.png" %>
+      <% end %>
+      
+      <%= link_to "https://www.blackdesertonline.com/download", class: "middle", target: :_blank do %>
+        <%= image_tag "dice.png" %>
+      <% end %>
+      
+      <%= link_to "https://www.facebook.com/Alliance-Gremory-Guild-112508870411824/", target: :_blank do %>
+        <%= image_tag "facebook.png" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="links">
+        <p><%= link_to "About", about_path %></p>
+        <p><%= link_to "Rules", root_path %></p>
+        <p><%= link_to "Contact", contact_path %></p>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="edit-comment">
+  <%= form_with model: @comment do |f| %>
+    <%= f.text_area :content %>
+    <br>
+    <%= f.submit "Save", class: "submit" %>
+  <% end %>
+</div>
